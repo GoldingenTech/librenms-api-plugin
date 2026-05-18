@@ -1,31 +1,30 @@
 {
-  "name": "blizko/librenms-api-plugin",
-  "description": "A LibreNMS API Extension plugin",
-  "version": "1.0.1",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Arturs Plisko",
-      "email": "blizko@blizko.lv"
+    "name": "blizko/librenms-api-plugin",
+    "description": "A LibreNMS API Extension plugin",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arturs Plisko",
+            "email": "blizko@blizko.lv"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "blizko\\LibrenmsAPIPlugin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "blizko\\LibrenmsAPIPlugin\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "blizko\\LibrenmsAPIPlugin\\Providers\\ApiPluginProvider"
+            ]
+        }
     }
-  ],
-  "minimum-stability": "stable",
-  "autoload": {
-    "psr-4": {
-      "blizko\\LibrenmsAPIPlugin\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "blizko\\LibrenmsAPIPlugin\\": "src"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "blizko\\LibrenmsAPIPlugin\\Providers\\ApiPluginProvider"
-      ]
-    }
-  }
 }
