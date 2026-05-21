@@ -58,4 +58,21 @@ class APIController extends Controller
         $data = DB::select($q, [$physaddress]);
         return response()->json($data, 200, [], JSON_PRETTY_PRINT);
     }
+
+    // Returns sensors for a device filtered by sensor_class (default: temperature).
+    // Response shape {status, sensors, count} matches GMM LibreNMS::getDeviceSensors() parser.
+    // Note: differs from other plugin methods (bare array) — this is intentional.
+    function getDeviceSensors(Request $request) {
+        $deviceId   = (int) $request->route('deviceId');
+        $sensorClass = $request->query('sensor_class', 'temperature');
+        $sensors = DB::select(
+            'SELECT * FROM sensors WHERE device_id = ? AND sensor_class = ?',
+            [$deviceId, $sensorClass]
+        );
+        return response()->json([
+            'status'  => 'ok',
+            'sensors' => $sensors,
+            'count'   => count($sensors),
+        ], 200, [], JSON_PRETTY_PRINT);
+    }
 }
